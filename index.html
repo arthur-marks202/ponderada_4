@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <!-- Defines the character encoding for the document -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Sets the viewport to make the website responsive -->
+    <title>Projeto Individual</title> <!-- Sets the title of the document -->
+
+    <script src="phaser.js"></script> <!-- Includes the Phaser library -->
+    <script src="skyScene.js"></script> <!-- Includes the skyScene script -->
+    <script src="welcomeScene.js"></script> <!-- Includes the welcomeScene script -->
+    <script src="gameOverScene.js"></script> <!-- Includes the gameOverScene script -->
+    <script src="tutorial.js"></script> <!-- Includes the tutorial script -->
+</head>
+
+<body>
+    <script>
+        const larguraJogo = 1511; // Sets the game width
+        const alturaJogo = 850; // Sets the game height
+
+        const config = {
+            type: Phaser.AUTO, // Sets the rendering type to Phaser.AUTO
+            width: larguraJogo, // Sets the game width
+            height: alturaJogo, // Sets the game height
+            physics: {
+                default: 'arcade', // Sets the default physics system to 'arcade'
+                arcade: {
+                    gravity: { x: -300 }, // Sets the gravity in the x direction
+                    debug: false, // Disables the debug mode
+                }
+            },
+            pixelArt: true, // Enables pixel art rendering
+            scene: [welcomeScene, tutorial, SkyScene, GameOverScene], // Sets the scenes for the game
+    };
+        const game = new Phaser.Game(config); // Creates a new Phaser game with the specified configuration
+    </script>
+</body>
+
+</html>
