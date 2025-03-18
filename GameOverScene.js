@@ -13,11 +13,11 @@ class GameOverScene extends Phaser.Scene {
     create() {
         // Configuração inicial da cena
         const larguraJogo = this.sys.game.config.width; // Obtém a largura do jogo.
-        const alturaJogo = this.sys.game.config.height; // Obtém a altura do jogo.    
+        const alturaJogo = this.sys.game.config.height; // Obtém a altura do jogo.
 
         this.add.image(larguraJogo / 2, alturaJogo / 2, 'background02'); // Adiciona a imagem de fundo ao centro da cena.
         this.add.image(larguraJogo / 2, 200, 'GameOver').setScale(1.5); // Adiciona a imagem de "Game Over" ao centro da cena, um pouco acima do centro vertical, e aumenta sua escala.
         let button = this.add.image(larguraJogo / 2, 500, 'restartButton').setInteractive().setScale(3); // Adiciona a imagem do botão de reinício ao centro da cena, abaixo da imagem de "Game Over", torna-a interativa e aumenta sua escala.
-        button.on('pointerdown', () => this.scene.start('welcomeScene')); // Adiciona um evento ao botão que, ao ser clicado, inicia a cena 'welcomeScene'.
+        button.on('pointerdown', () => this.scene.start('welcomeScene')); // Adiciona um evento ao botão que, ao ser clicado0, inicia a cena 'welcomeScene'.
     }
 }
