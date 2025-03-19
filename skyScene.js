@@ -9,7 +9,12 @@ class SkyScene extends Phaser.Scene {
     
     // Pré-carrega os recursos necessários para a cena.
     preload() {
-        this.load.image('background', 'assets/imagemFundo/bg_space_seamless.png'); // Carrega a imagem de fundo.
+        this.load.image('bg01', 'assets/imagemFundo/Clouds5/1.png');
+        this.load.image('bg02', 'assets/imagemFundo/Clouds5/2.png');
+        this.load.image('bg03', 'assets/imagemFundo/Clouds5/3.png');
+        this.load.image('bg04', 'assets/imagemFundo/Clouds5/4.png');
+        this.load.image('bg05', 'assets/imagemFundo/Clouds5/5.png');
+
         this.load.spritesheet('naveReta', 'assets/novaNave/naveReta.png', { frameWidth: 119, frameHeight: 120 }); // Carrega a folha de sprites da nave para movimento reto.
         this.load.spritesheet('naveSobe', 'assets/novaNave/naveSobe.png', { frameWidth: 121, frameHeight: 110 }); // Carrega a folha de sprites da nave para movimento ascendente.
         this.load.spritesheet('naveDesce', 'assets/novaNave/naveDesce.png', { frameWidth: 117, frameHeight: 115 }); // Carrega a folha de sprites da nave para movimento descendente.
@@ -26,7 +31,18 @@ class SkyScene extends Phaser.Scene {
         this.pontuacao = 0; // Inicializa a pontuação em 0.
         this.geraçaoMeteoro(); // Gera um meteoro na cena.
 
-        this.add.image(larguraJogo / 2, alturaJogo / 2, 'background'); // Adiciona a imagem de fundo ao centro da cena.
+        this.add.image(larguraJogo / 2, alturaJogo / 2, 'bg'); // Adiciona a imagem de fundo ao centro da cena.
+         this.backgrounds = []; // Corrigido: agora backgrounds é um atributo da classe
+
+        const speeds = [0.005, 0.05, 0.07, 0.08, 0.09];
+
+        for (let i = 0; i < 5; i++) {
+            let bg = this.add.tileSprite(0, 0, 576, 324, `bg0${i + 1}`)
+                .setOrigin(0, 0)
+                .setScale(2.8);
+
+            this.backgrounds.push({ sprite: bg, speed: speeds[i] });
+        }
 
         this.nave = this.physics.add.sprite(500, 425, 'naveReta'); // Adiciona o sprite da nave à cena.
         this.nave.setCollideWorldBounds(true); // Faz a nave colidir com os limites do mundo.
@@ -89,6 +105,11 @@ class SkyScene extends Phaser.Scene {
             this.geraçaoMeteoro(); // Gera um novo meteoro.
             this.physics.add.collider(this.nave, this.meteoro, this.colisaoNave, null, this); // Adiciona detecção de colisão entre a nave e o meteoro.
         }
+
+        // Movimenta apenas no eixo X
+        this.backgrounds.forEach(layer => {
+            layer.sprite.tilePositionX += layer.speed; // Movimento horizontal (somente X)
+        });
     }
 
     // Função para coletar a estrela.

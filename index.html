@@ -15,21 +15,21 @@
 <body>
     <script>
         const larguraJogo = 1511; // Sets the game width
-        const alturaJogo = 850; // Sets the game height
+        const alturaJogo = 750; // Sets the game height
 
         const config = {
             type: Phaser.AUTO, // Sets the rendering type to Phaser.AUTO
             width: larguraJogo, // Sets the game width
             height: alturaJogo, // Sets the game height
             physics: {
-                default: 'arcade', // Sets the default physics system to 'arcade'
+             default: 'arcade', // Sets the default physics system to 'arcade'
                 arcade: {
                     gravity: { x: -300 }, // Sets the gravity in the x direction
                     debug: false, // Disables the debug mode
                 }
             },
             pixelArt: true, // Enables pixel art rendering
-            scene: [welcomeScene, tutorial, SkyScene, GameOverScene], // Sets the scenes for the game
+            scene: [WelcomeScene, tutorial, SkyScene, GameOverScene], // Sets the scenes for the game
     };
         const game = new Phaser.Game(config); // Creates a new Phaser game with the specified configuration
     </script>
