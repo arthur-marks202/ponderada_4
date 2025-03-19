@@ -5,11 +5,12 @@ class WelcomeScene extends Phaser.Scene {
 
     preload() {
         // Carregar imagens de fundo
-        this.load.image('bg01', 'assets/imagemFundo/Clouds5/1.png');
-        this.load.image('bg02', 'assets/imagemFundo/Clouds5/2.png');
-        this.load.image('bg03', 'assets/imagemFundo/Clouds5/3.png');
-        this.load.image('bg04', 'assets/imagemFundo/Clouds5/4.png');
-        this.load.image('bg05', 'assets/imagemFundo/Clouds5/5.png');
+        this.load.image('bg01', 'assets/imagemFundo/1.png');
+        this.load.image('bg02', 'assets/imagemFundo/2.png');
+        this.load.image('bg03', 'assets/imagemFundo/3.png');
+        this.load.image('bg04', 'assets/imagemFundo/4.png');
+        this.load.image('bg05', 'assets/imagemFundo/5.png');
+        this.load.image('bg06', 'assets/imagemFundo/6.png');
 
         // Carregar elementos da tela inicial
         this.load.image('SkyStorm', 'assets/welcomeScene/novoTitulo.png');
@@ -22,17 +23,17 @@ class WelcomeScene extends Phaser.Scene {
         const larguraJogo = this.sys.game.config.width;
         const alturaJogo = this.sys.game.config.height;
 
-        this.backgrounds = []; // Corrigido: agora backgrounds é um atributo da classe
+        this.bgs = []; // Corrigido: agora backgrounds é um atributo da classe
 
-        const speeds = [0.005, 0.05, 0.07, 0.08, 0.09];
+        const speeds = [0.005, 0.05, 0.07, 0.08, 0.09, 0.1]; // Velocidades de movimento dos planos de fundo
 
         // Criar os fundos em camadas
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 6; i++) {
             let bg = this.add.tileSprite(0, 0, 576, 324, `bg0${i + 1}`)
                 .setOrigin(0, 0)
                 .setScale(2.8);
 
-            this.backgrounds.push({ sprite: bg, speed: speeds[i] });
+            this.bgs.push({ sprite: bg, speed: speeds[i] });
         }
 
         // Adiciona o título do jogo
@@ -49,7 +50,7 @@ class WelcomeScene extends Phaser.Scene {
 
     update() {
         // Movimenta apenas no eixo X
-        this.backgrounds.forEach(layer => {
+        this.bgs.forEach(layer => {
             layer.sprite.tilePositionX += layer.speed; // Movimento horizontal (somente X)
         });
     }
